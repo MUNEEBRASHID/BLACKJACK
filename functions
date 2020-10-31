@@ -1,0 +1,70 @@
+def take_bet(chips):
+    while True:
+        try:
+            chips.bet=int(input("How many chips would you like to bet"))
+        except:
+            print("please provide a number")
+        else:
+            if chips.bet>chips.total:
+                print("dorry, you do not have enough chips")
+                print(f"you have only {chips.total} chips")
+            else:
+                break
+                
+                
+                
+                
+def hit(deck,players):
+    #single_card=deck.deal_one()
+    players.add_card(deck.deal_one())
+    players.adjust_aces()
+    
+    
+    
+    
+def hit_or_stand(deck,players):
+    global Playing
+    while True:
+        x=input("hit or stand? h or s: ")
+        if x=='h':
+            hit(deck,players)
+        elif x=='s':
+            print("palyer stands! Dealer's turn")
+            Playing=False
+        else:
+            print("sorry, I did not get that")
+            continue
+        break
+
+
+
+def show_some(Player, Dealer):
+    print("\n Dealer's Hand: ")
+    print("<card hidden>")
+    print('', Dealer.cards[1])
+    print("\n player's Hand: ", *Player.cards, sep="\n")
+def show_all(Player, Dealer):
+    print("\n Dealer's Hand: ",*Dealer.cards, sep="\n")
+    print("Dealer's Hand= ", Dealer.value)
+    print("\n Player's Hand: ",*Player.cards, sep="\n")
+    print("Player's Hand= ", Player.value)
+    
+    
+    
+def player_bust(Player, Dealer, chips):
+    print("Player Bust!")
+    chips.lose_bet()
+def player_win(Player, Dealer, chips):
+    print("Player won! Dealer Bust")
+    chips.win_bet()
+def dealer_bust(Player, Dealer, chips):
+    print("Player won! Dealer Bust")
+    chips.win_bet()
+def dealer_win(Player, Dealer, chips):
+    print("Player Bust!")
+    chips.lose_bet()
+def Push(Player, Dealer):
+    print("Player, Dealer PUSH")
+
+
+
